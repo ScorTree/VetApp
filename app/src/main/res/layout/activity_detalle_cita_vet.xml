@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- HEADER -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <ImageButton
+                android:id="@+id/btnBackDetCita"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_logout"
+                app:tint="@color/morado"
+                android:contentDescription="Regresar"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Detalle de consulta"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/morado"
+                android:paddingStart="8dp"/>
+        </LinearLayout>
+
+        <!-- ESTADO -->
+        <TextView
+            android:id="@+id/tvDetCitaEstado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pendiente"
+            android:visibility="gone"/>
+
+        <!-- SECCIÓN DATOS DEL PACIENTE -->
+        <TextView
+            android:text="Datos del paciente"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/morado"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/morado"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:text="🐾"
+                    android:textSize="32sp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvDetCitaNombre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"/>
+
+                    <TextView
+                        android:id="@+id/tvDetCitaEdad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#EEEEEE"
+                        android:paddingTop="2dp"/>
+
+                    <TextView
+                        android:id="@+id/tvDetCitaEspecie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#EEEEEE"
+                        android:paddingTop="2dp"/>
+
+                    <TextView
+                        android:id="@+id/tvDetCitaRaza"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#EEEEEE"
+                        android:paddingTop="2dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- SIGNOS VITALES -->
+        <TextView
+            android:text="Signos vitales"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/morado"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Temperatura (°C)"
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="#F0EEFF"
+            app:boxStrokeColor="@color/morado"
+            app:hintTextColor="@color/morado"
+            android:layout_marginBottom="8dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDetTemp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textColor="@color/morado"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Peso (kg)"
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="#F0EEFF"
+            app:boxStrokeColor="@color/morado"
+            app:hintTextColor="@color/morado"
+            android:layout_marginBottom="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDetPeso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textColor="@color/morado"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- DIAGNÓSTICO -->
+        <TextView
+            android:text="Diagnóstico"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/morado"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Escribe el diagnóstico *"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/morado"
+            app:hintTextColor="@color/morado"
+            android:layout_marginBottom="24dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDetDiagnostico"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minLines="3"
+                android:gravity="top"
+                android:inputType="textMultiLine"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- BOTÓN GUARDAR -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGuardarDetCita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar diagnóstico"
+            android:textAllCaps="false"
+            app:backgroundTint="@color/morado"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- BOTÓN PRESCRIPCIÓN -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnIrPrescripcionDet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Agregar prescripción →"
+            android:textAllCaps="false"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="@color/morado"
+            app:strokeWidth="1dp"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

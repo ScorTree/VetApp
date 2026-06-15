@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="true">
+
+    <!-- TÍTULO -->
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agendar cita"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/morado"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- MASCOTA -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMascota"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Mascota"
+        app:boxBackgroundMode="filled"
+        android:backgroundTint="@android:color/transparent"
+        app:boxStrokeColor="@color/morado"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:hintTextColor="@color/morado"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/spMascota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#8E7CC3"
+            android:focusable="false"
+            android:clickable="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- MOTIVO -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMotivo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Motivo"
+        app:boxBackgroundMode="filled"
+        android:backgroundTint="@android:color/transparent"
+        app:boxStrokeColor="@color/morado"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:hintTextColor="@color/morado"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tilMascota"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/spMotivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#8E7CC3"
+            android:focusable="false"
+            android:clickable="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- FECHA -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilFecha"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Fecha"
+        app:boxBackgroundMode="filled"
+        android:backgroundTint="@android:color/transparent"
+        app:boxStrokeColor="@color/morado"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:hintTextColor="@color/morado"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tilMotivo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#8E7CC3"
+            android:focusable="false"
+            android:clickable="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- HORA -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilHora"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Selecciona una hora de abajo"
+        app:boxBackgroundMode="filled"
+        android:backgroundTint="@android:color/transparent"
+        app:boxStrokeColor="@color/morado"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:hintTextColor="@color/morado"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tilFecha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etHora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#8E7CC3"
+            android:focusable="false"
+            android:clickable="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- BOTÓN -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnConfirmar"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="CONFIRMAR CITA"
+        android:textAllCaps="false"
+        android:layout_marginTop="24dp"
+        app:backgroundTint="@color/morado"
+        app:layout_constraintTop_toBottomOf="@id/tilHora"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/layoutDisponibilidad"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+
+        app:layout_constraintTop_toBottomOf="@id/btnConfirmar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- TÍTULO -->
+        <TextView
+            android:id="@+id/tvDisponibilidadTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Disponibilidad del día"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/morado"/>
+
+        <!-- SUBTÍTULO -->
+        <TextView
+            android:id="@+id/tvDisponibilidadSub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Selecciona un día para ver los horarios disponibles"
+            android:textSize="13sp"
+            android:textColor="#777777"
+            android:paddingTop="4dp"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHorarios"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:visibility="gone"
+        android:paddingTop="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+
+        app:layout_constraintTop_toBottomOf="@id/layoutDisponibilidad"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"/>
+
+    <!-- BOTTOM NAV -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:menu="@menu/bottom_menu"
+        app:itemIconTint="@color/bottom_nav_selector"
+        app:itemTextColor="@color/bottom_nav_selector"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

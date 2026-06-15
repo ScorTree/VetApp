@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#8E7CC3"
+            tools:text="12/03/2025"/>
+
+        <TextView
+            android:id="@+id/tvDiagnostico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Diagnóstico: Gastroenteritis"/>
+
+        <TextView
+            android:id="@+id/tvNotas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Notas: Reposo y dieta blanda"/>
+
+        <TextView
+            android:id="@+id/tvDatosExtra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Peso: 12kg · Temp: 38.5°C"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

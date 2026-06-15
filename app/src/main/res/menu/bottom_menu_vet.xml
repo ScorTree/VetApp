@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/vet_menu_inicio"
+        android:icon="@drawable/ic_home"
+        android:title="Inicio" />
+
+    <item
+        android:id="@+id/vet_menu_agenda"
+        android:icon="@drawable/ic_calendar"
+        android:title="Agenda" />
+
+    <item
+        android:id="@+id/vet_menu_inventario"
+        android:icon="@drawable/ic_pets"
+        android:title="Inventario" />
+
+    <item
+        android:id="@+id/vet_menu_perfil"
+        android:icon="@drawable/ic_logout"
+        android:title="Perfil" />
+
+</menu>

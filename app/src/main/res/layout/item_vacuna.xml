@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardVacuna"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="5dp"
+    app:cardBackgroundColor="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Nombre vacuna -->
+        <TextView
+            android:id="@+id/tvNombreVacuna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="💉 Rabia"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/morado"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            android:background="#E0E0E0"/>
+
+        <!-- Fecha aplicación -->
+        <TextView
+            android:id="@+id/tvFechaAplicacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aplicada: 15/03/2025"
+            android:textSize="15sp"
+            android:textColor="#444444"/>
+
+        <!-- Fecha próxima -->
+        <TextView
+            android:id="@+id/tvFechaProxima"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Próxima: 15/03/2026"
+            android:textSize="15sp"
+            android:textColor="#444444"/>
+
+        <!-- Lote -->
+        <TextView
+            android:id="@+id/tvLote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Lote: RB-4512"
+            android:textSize="15sp"
+            android:textColor="#444444"/>
+
+        <!-- Notas -->
+        <TextView
+            android:id="@+id/tvNotas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Notas: Sin reacciones"
+            android:textSize="15sp"
+            android:textColor="#444444"/>
+
+        <!-- Estado -->
+        <TextView
+            android:id="@+id/tvEstado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="🟢 Vigente"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#4CAF50"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

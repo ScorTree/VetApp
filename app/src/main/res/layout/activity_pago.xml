@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="true">
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_menu_revert"
+        android:contentDescription="@string/regresar"
+        app:tint="#8E7CC3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvTituloPago"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pago de cita"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#8E7CC3"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/tvTituloPago"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/tvResumenPago"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/etTitular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre del titular"
+                android:textColor="@android:color/black"
+                android:textColorHint="#888888"
+                android:layout_marginTop="24dp"/>
+
+            <EditText
+                android:id="@+id/etTarjeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Número de tarjeta"
+                android:inputType="number"
+                android:maxLength="19"
+                android:textColor="@android:color/black"
+                android:textColorHint="#888888"
+                android:layout_marginTop="12dp"/>
+
+            <EditText
+                android:id="@+id/etVencimiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="MM/AA"
+                android:inputType="number"
+                android:maxLength="5"
+                android:textColor="@android:color/black"
+                android:textColorHint="#888888"
+                android:layout_marginTop="12dp"/>
+
+            <EditText
+                android:id="@+id/etCvv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="CVV"
+                android:inputType="numberPassword"
+                android:maxLength="3"
+                android:textColor="@android:color/black"
+                android:textColorHint="#888888"
+                android:layout_marginTop="12dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnConfirmarPago"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirmar pago"
+                android:textAllCaps="false"
+                android:layout_marginTop="28dp"
+                android:textColor="@android:color/white"
+                app:backgroundTint="@color/morado"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

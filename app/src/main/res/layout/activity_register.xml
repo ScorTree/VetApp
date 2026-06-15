@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp">
+
+        <!-- TÍTULO -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crear Cuenta"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#8E7CC3"
+            android:layout_marginBottom="24dp" />
+
+        <!-- NOMBRE -->
+        <EditText
+            android:id="@+id/etNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre completo"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/black"
+            android:textColorHint="#9E9E9E"
+            android:backgroundTint="#8E7CC3"
+            android:padding="12dp" />
+
+        <!-- CORREO -->
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Correo electrónico"
+            android:inputType="textEmailAddress"
+            android:textColor="@android:color/black"
+            android:textColorHint="#9E9E9E"
+            android:backgroundTint="#8E7CC3"
+            android:padding="12dp"
+            android:layout_marginTop="12dp" />
+
+        <!-- CONTRASEÑA -->
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:textColor="@android:color/black"
+            android:textColorHint="#9E9E9E"
+            android:backgroundTint="#8E7CC3"
+            android:padding="12dp"
+            android:layout_marginTop="12dp" />
+
+        <!-- TELÉFONO -->
+        <EditText
+            android:id="@+id/etTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Teléfono"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:textColor="@android:color/black"
+            android:textColorHint="#9E9E9E"
+            android:backgroundTint="#8E7CC3"
+            android:padding="12dp"
+            android:layout_marginTop="12dp" />
+
+        <!-- DIRECCIÓN -->
+        <EditText
+            android:id="@+id/etDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Dirección"
+            android:inputType="textPostalAddress"
+            android:textColor="@android:color/black"
+            android:textColorHint="#9E9E9E"
+            android:backgroundTint="#8E7CC3"
+            android:padding="12dp"
+            android:layout_marginTop="12dp" />
+
+        <!-- BOTÓN REGISTRAR -->
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrarse"
+            android:backgroundTint="#8E7CC3"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="24dp" />
+
+        <!-- VOLVER A LOGIN -->
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Ya tienes cuenta? Inicia sesión"
+            android:textColor="#8E7CC3"
+            android:textSize="14sp"
+            android:layout_marginTop="20dp" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="true">
+
+    <!-- TÍTULO -->
+    <TextView
+        android:id="@+id/tvTituloAgenda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agenda Global"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="@color/morado"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- BUSCADOR -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilBuscarCita"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Buscar por nombre"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="12dp"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/morado"
+        app:hintTextColor="@color/morado"
+        app:startIconDrawable="@drawable/ic_pets"
+        app:startIconTint="@color/morado"
+        app:layout_constraintTop_toBottomOf="@id/tvTituloAgenda"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etBuscarCita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- TABS FILTRO -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabsFiltro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabTextColor="@color/morado"
+        app:tabIndicatorHeight="0dp"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabMode="scrollable"
+        app:tabPaddingStart="4dp"
+        app:tabPaddingEnd="4dp"
+        app:layout_constraintTop_toBottomOf="@id/tilBuscarCita"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Todas"/>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirmada"/>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pendiente"/>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelada"/>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Completada"/>
+    </com.google.android.material.tabs.TabLayout>
+
+    <!-- CONTADOR RESULTADOS -->
+    <TextView
+        android:id="@+id/tvResultados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resultados (0)"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/morado"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabsFiltro"/>
+
+    <!-- VACÍO -->
+    <TextView
+        android:id="@+id/tvAgendaVacia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No hay citas en esta categoría"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tvResultados"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"/>
+
+    <!-- LISTA -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCitasVet"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvResultados"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"/>
+
+    <!-- BOTTOM NAV -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:menu="@menu/bottom_menu_vet"
+        app:itemIconTint="@color/bottom_nav_selector"
+        app:itemTextColor="@color/bottom_nav_selector"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

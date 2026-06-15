@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.VetApp"
+        parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!-- Colores base de la app -->
+        <item name="colorPrimary">@color/morado</item>
+        <item name="colorPrimaryVariant">@color/morado</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorOnSurface">#9E9E9E</item>
+        <item name="placeholderTextColor">#9E9E9E</item>
+
+        <!-- Fondo general -->
+        <item name="android:windowBackground">@color/white</item>
+
+    </style>
+
+</resources>

@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">VetApp</string>
+    <string name="detalle_especie">Especie: %1$s</string>
+    <string name="detalle_raza">Raza: %1$s</string>
+    <string name="detalle_edad">Edad: %1$s años</string>
+    <string name="sin_raza">Sin raza</string>
+    <string name="editar_mascota">Editar mascota</string>
+    <string name="nombre">Nombre</string>
+    <string name="especie">Especie</string>
+    <string name="raza">Raza</string>
+    <string name="edad">Edad</string>
+    <string name="regresar">Regresar</string>
+    <string name="guardar_cambios">Guardar cambios</string>
+    <string name="eliminar_mascota">Eliminar mascota</string>
+    <string name="confirmar_eliminar">¿Seguro que deseas eliminar esta mascota?</string>
+    <string name="si_eliminar">Sí, eliminar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="veterinario">Veterinario</string>
+    <string name="nombre_veterinario">Dr. Miguel Ángel</string>
+    <string name="calificacion_veterinario">★ 4.8</string>
+    <string name="sin_diagnostico">Sin diagnóstico</string>
+    <string name="sin_notas">Sin notas</string>
+    <string name="historial_general">Historial general</string>
+    <string name="medicinas">Medicinas</string>
+    <string name="peso_kg">Peso: %1$.1f kg</string>
+    <string name="temp_c">Temp: %1$.1f °C</string>
+    <string name="peso_no_disponible">Peso: -</string>
+    <string name="temp_no_disponible">Temp: -</string>
+
+</resources>

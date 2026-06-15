@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardPago"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="6dp"
+    app:cardBackgroundColor="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvConcepto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Consulta General"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/morado"/>
+
+        <TextView
+            android:id="@+id/tvFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12/06/2026"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/tvMonto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$350.00"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tvEstado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🟢 Pagado"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="6dp"/>
+
+        <TextView
+            android:id="@+id/tvMetodo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Método: Tarjeta"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/tvReferencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Referencia: VT-20260612213055"
+            android:textSize="13sp"
+            android:textColor="#999999"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
