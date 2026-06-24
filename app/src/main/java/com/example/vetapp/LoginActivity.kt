@@ -7,11 +7,11 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vetapp.data.HttpClientProvider
 import com.example.vetapp.data.SupabaseConfig
 import com.example.vetapp.util.SessionManager
-import com.google.android.material.button.MaterialButton
 import io.ktor.client.request.*
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.*
@@ -34,9 +34,15 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_login)
 
+        findViewById<TextView>(R.id.tvForgotPassword).setOnClickListener {
+            startActivity(
+                Intent(this, CambiarPasswordActivity::class.java)
+            )
+        }
+
         val etEmail    = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
-        val btnLogin   = findViewById<MaterialButton>(R.id.btnLogin)
+        val btnLogin   = findViewById<Button>(R.id.btnLogin)
         val tvRegister = findViewById<TextView>(R.id.tvRegister)
 
         btnLogin.setOnClickListener {

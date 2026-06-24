@@ -122,20 +122,25 @@ class MisCitasActivity : AppCompatActivity() {
 
                 for (i in 0 until arr.length()) {
                     val o = arr.getJSONObject(i)
+
+                    if (o.isNull("pacientes")) {
+                        continue
+                    }
+
                     val p = o.getJSONObject("pacientes")
 
                     listaCitas.add(
                         Cita(
                             id = o.getInt("cita_id"),
-                            mascota = p.getString("pac_nombre"),
-                            especie = p.getString("pac_especie"),
+                            mascota = p.optString("pac_nombre", "Mascota"),
+                            especie = p.optString("pac_especie", "Sin especie"),
                             raza = p.optString("pac_raza", ""),
-                            edad = p.optInt("pac_edad", 0),
-                            motivo = o.getString("cita_motivo"),
-                            fecha = o.getString("cita_fecha"),
-                            hora = o.getString("cita_hora"),
-                            pagada = o.optBoolean("cita_pagada",false),
-                            costo = o.optDouble("cita_costo",350.0)
+                            edad = if (p.isNull("pac_edad")) null else p.getInt("pac_edad"),
+                            motivo = o.optString("cita_motivo", "Sin motivo"),
+                            fecha = o.optString("cita_fecha", ""),
+                            hora = o.optString("cita_hora", ""),
+                            pagada = o.optBoolean("cita_pagada", false),
+                            costo = o.optDouble("cita_costo", 350.0)
                         )
                     )
                 }

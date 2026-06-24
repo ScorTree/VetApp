@@ -52,6 +52,16 @@
         android:textColor="@android:color/white"
         android:layout_marginTop="24dp" />
 
+    <!-- OLVIDÉ CONTRASEÑA -->
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Olvidaste tu contraseña?"
+        android:textColor="#8E7CC3"
+        android:textSize="14sp"
+        android:layout_marginTop="16dp" />
+
     <!-- REGISTRO -->
     <TextView
         android:id="@+id/tvRegister"
@@ -60,6 +70,7 @@
         android:text="¿No tienes cuenta? Regístrate"
         android:textColor="#8E7CC3"
         android:textSize="14sp"
+        android:textStyle="bold"
         android:layout_marginTop="24dp" />
 
 </LinearLayout>
