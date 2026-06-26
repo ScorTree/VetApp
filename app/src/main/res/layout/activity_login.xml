@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:hint="Contraseña"
         android:inputType="textPassword"
+        android:drawableEnd="@android:drawable/ic_menu_view"
         android:textColor="@android:color/black"
         android:textColorHint="#9E9E9E"
         android:padding="12dp"

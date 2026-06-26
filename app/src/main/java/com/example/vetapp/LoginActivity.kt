@@ -7,6 +7,9 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import android.text.InputType
+import android.util.Patterns
+import android.view.MotionEvent
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vetapp.data.HttpClientProvider
@@ -45,10 +48,17 @@ class LoginActivity : AppCompatActivity() {
         val btnLogin   = findViewById<Button>(R.id.btnLogin)
         val tvRegister = findViewById<TextView>(R.id.tvRegister)
 
+        configurarMostrarPassword(etPassword)
+
         btnLogin.setOnClickListener {
+
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
+
             login(
-                etEmail.text.toString().trim(),
-                etPassword.text.toString().trim()
+                email,
+                password,
+                btnLogin
             )
         }
 
@@ -57,11 +67,31 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun login(email: String, password: String) {
+    private fun login(
+        email: String,
+        password: String,
+        btnLogin: Button
+    ) {
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Completa todos los campos",
+                Toast.LENGTH_SHORT
+            ).show()
             return
         }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(
+                this,
+                "Ingresa un correo electrónico válido",
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
+
+        btnLogin.isEnabled = false
+        btnLogin.text = "Iniciando..."
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -81,8 +111,14 @@ class LoginActivity : AppCompatActivity() {
 
                 if (!json.has("access_token")) {
                     runOnUiThread {
-                        Toast.makeText(this@LoginActivity,
-                            "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
+                        btnLogin.isEnabled = true
+                        btnLogin.text = "Iniciar sesión"
+
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Correo o contraseña incorrectos",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                     return@launch
                 }
@@ -118,9 +154,19 @@ class LoginActivity : AppCompatActivity() {
                 }
 
             } catch (e: Exception) {
+
+                android.util.Log.e("LOGIN", "Error al iniciar sesión", e)
+
                 runOnUiThread {
-                    Toast.makeText(this@LoginActivity,
-                        "Error: ${e.message}", Toast.LENGTH_LONG).show()
+
+                    btnLogin.isEnabled = true
+                    btnLogin.text = "Iniciar sesión"
+
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Comprueba tu conexión a Internet e inténtalo nuevamente.",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }
@@ -134,5 +180,39 @@ class LoginActivity : AppCompatActivity() {
         }
         startActivity(Intent(this, destino))
         finish()
+    }
+
+    private fun configurarMostrarPassword(editText: EditText) {
+
+        var visible = false
+
+        editText.setOnTouchListener { _, event ->
+
+            if (event.action == MotionEvent.ACTION_UP) {
+
+                val drawableEnd = editText.compoundDrawables[2]
+
+                if (drawableEnd != null &&
+                    event.rawX >= editText.right - drawableEnd.bounds.width() - editText.paddingEnd
+                ) {
+
+                    visible = !visible
+
+                    if (visible) {
+                        editText.inputType =
+                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                    } else {
+                        editText.inputType =
+                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    }
+
+                    editText.setSelection(editText.text.length)
+
+                    return@setOnTouchListener true
+                }
+            }
+
+            false
+        }
     }
 }

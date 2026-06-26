@@ -4,6 +4,12 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import android.util.Patterns
+import android.util.Log
+import android.view.MotionEvent
+import android.view.View
+import io.ktor.client.statement.bodyAsText
+import org.json.JSONArray
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vetapp.data.HttpClientProvider
 import com.example.vetapp.data.SupabaseConfig
@@ -35,17 +41,68 @@ class CambiarPasswordActivity : AppCompatActivity() {
     private fun enviarCorreoRecuperacion() {
         val correo = etCorreo.text.toString().trim()
 
+        etCorreo.setText(correo)
+        etCorreo.setSelection(correo.length)
+
         if (correo.isEmpty()) {
-            Toast.makeText(this, "Ingresa tu correo electrónico", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Ingresa tu correo electrónico",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
+            Toast.makeText(
+                this,
+                "Ingresa un correo electrónico válido",
+                Toast.LENGTH_LONG
+            ).show()
             return
         }
 
         btnCambiarPassword.isEnabled = false
-        btnCambiarPassword.text = "Enviando..."
+        btnCambiarPassword.text = "Verificando..."
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = HttpClientProvider.client.post(
+                val buscarResponse = HttpClientProvider.client.get(
+                    "${SupabaseConfig.URL}/rest/v1/propietarios"
+                ) {
+                    headers {
+                        append("apikey", SupabaseConfig.API_KEY)
+                        append(
+                            HttpHeaders.Authorization,
+                            "Bearer ${SupabaseConfig.API_KEY}"
+                        )
+                    }
+
+                    parameter("prop_email", "eq.$correo")
+                    parameter("select", "prop_id")
+                }
+
+                val existeCorreo = JSONArray(
+                    buscarResponse.bodyAsText()
+                ).length() > 0
+
+                if (!existeCorreo) {
+                    runOnUiThread {
+                        btnCambiarPassword.isEnabled = true
+                        btnCambiarPassword.text = "Enviar enlace"
+
+                        Toast.makeText(
+                            this@CambiarPasswordActivity,
+                            "No existe una cuenta registrada con ese correo.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    return@launch
+                }
+
+                btnCambiarPassword.text = "Enviando..."
+
+                HttpClientProvider.client.post(
                     "${SupabaseConfig.URL}/auth/v1/recover"
                 ) {
                     headers {
@@ -62,15 +119,13 @@ class CambiarPasswordActivity : AppCompatActivity() {
                     )
                 }
 
-                val body = response.bodyAsText()
-
                 runOnUiThread {
                     btnCambiarPassword.isEnabled = true
                     btnCambiarPassword.text = "Enviar enlace"
 
                     Toast.makeText(
                         this@CambiarPasswordActivity,
-                        "Si el correo está registrado, recibirás un enlace para cambiar tu contraseña.",
+                        "Se envió un enlace de recuperación a tu correo.",
                         Toast.LENGTH_LONG
                     ).show()
 
@@ -78,13 +133,15 @@ class CambiarPasswordActivity : AppCompatActivity() {
                 }
 
             } catch (e: Exception) {
+                Log.e("RESET_PASSWORD", "Error al enviar correo de recuperación", e)
+
                 runOnUiThread {
                     btnCambiarPassword.isEnabled = true
                     btnCambiarPassword.text = "Enviar enlace"
 
                     Toast.makeText(
                         this@CambiarPasswordActivity,
-                        "Error: ${e.message}",
+                        "Comprueba tu conexión a Internet e inténtalo nuevamente.",
                         Toast.LENGTH_LONG
                     ).show()
                 }

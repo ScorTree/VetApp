@@ -67,7 +67,8 @@
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".DetalleMascotaActivity" />
         <activity
             android:name=".CarnetVacunacionActivity"
