@@ -87,6 +87,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/edad"
                 android:inputType="number"
+                android:maxLength="2"
                 android:autofillHints="none"
                 android:textColor="#8E7CC3"
                 android:layout_marginTop="12dp"/>

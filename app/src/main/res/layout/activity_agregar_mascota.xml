@@ -55,15 +55,18 @@
                 android:textColorHint="#9E9E9E"
                 android:backgroundTint="#8E7CC3"/>
 
-            <EditText
-                android:id="@+id/etEspecie"
-                android:hint="Especie"
+            <AutoCompleteTextView
+                android:id="@+id/actEspecie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:hint="Especie"
+                android:inputType="none"
+                android:focusable="false"
+                android:clickable="true"
                 android:textColor="@android:color/black"
                 android:textColorHint="#9E9E9E"
-                android:backgroundTint="#8E7CC3"/>
+                android:backgroundTint="#8E7CC3"
+                android:layout_marginTop="12dp" />
 
             <EditText
                 android:id="@+id/etRaza"
@@ -79,6 +82,7 @@
                 android:id="@+id/etEdad"
                 android:hint="Edad"
                 android:inputType="number"
+                android:maxLength="2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"

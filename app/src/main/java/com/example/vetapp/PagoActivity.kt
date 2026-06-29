@@ -14,9 +14,11 @@ import android.graphics.BitmapFactory
 import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import java.io.File
 import java.io.FileOutputStream
+import java.util.Calendar
 import com.example.vetapp.data.HttpClientProvider
 import com.example.vetapp.data.SupabaseConfig
 import com.google.android.material.button.MaterialButton
@@ -194,21 +196,22 @@ class PagoActivity : AppCompatActivity() {
 
     private fun validarYConfirmarPago() {
 
-        val titular = etTitular.text.toString().trim()
+        val titular = formatearNombreTitular(etTitular.text.toString())
+
+        etTitular.setText(titular)
+        etTitular.setSelection(titular.length)
         val tarjeta = etTarjeta.text.toString().trim()
         val vencimiento = etVencimiento.text.toString().trim()
         val cvv = etCvv.text.toString().trim()
 
         val tarjetaLimpia = tarjeta.replace(" ", "")
 
-        if (titular.isEmpty()) {
-
+        if (!nombreTitularValido(titular)) {
             Toast.makeText(
                 this,
-                "Ingresa el nombre del titular",
+                "Ingresa un nombre de titular válido",
                 Toast.LENGTH_LONG
             ).show()
-
             return
         }
 
@@ -235,6 +238,15 @@ class PagoActivity : AppCompatActivity() {
                 Toast.LENGTH_LONG
             ).show()
 
+            return
+        }
+
+        if (!vencimientoValido(vencimiento)) {
+            Toast.makeText(
+                this,
+                "La fecha de vencimiento no es válida",
+                Toast.LENGTH_LONG
+            ).show()
             return
         }
 
@@ -327,9 +339,11 @@ class PagoActivity : AppCompatActivity() {
                 btnConfirmarPago.isEnabled = true
                 btnConfirmarPago.text = "Confirmar pago"
 
+                Log.e("PAGO", "Error al registrar pago", e)
+
                 Toast.makeText(
                     this@PagoActivity,
-                    "Error al registrar pago: ${e.message}",
+                    "Comprueba tu conexión a internet e inténtalo nuevamente.",
                     Toast.LENGTH_LONG
                 ).show()
             }
@@ -509,5 +523,68 @@ class PagoActivity : AppCompatActivity() {
         pdfDocument.close()
 
         return archivo
+    }
+
+    private fun nombreTitularValido(nombre: String): Boolean {
+        val limpio = limpiarTexto(nombre)
+
+        val partes = limpio.split(" ")
+
+        if (partes.size < 2) return false
+
+        for (parte in partes) {
+            if (parte.length < 2) return false
+
+            if (!parte.matches(Regex("^[A-Za-zÁÉÍÓÚáéíóúÑñ]+$"))) {
+                return false
+            }
+        }
+
+        return true
+    }
+
+    private fun limpiarTexto(texto: String): String {
+        return texto
+            .trim()
+            .replace(Regex("\\s+"), " ")
+    }
+
+    private fun formatearNombreTitular(nombre: String): String {
+        return limpiarTexto(nombre)
+            .lowercase()
+            .split(" ")
+            .joinToString(" ") { palabra ->
+                palabra.replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase()
+                    else it.toString()
+                }
+            }
+    }
+
+    private fun vencimientoValido(vencimiento: String): Boolean {
+        return try {
+            val partes = vencimiento.split("/")
+            if (partes.size != 2) return false
+
+            val mes = partes[0].toInt()
+            val anio = partes[1].toInt()
+
+            if (mes !in 1..12) return false
+
+            val calendario = Calendar.getInstance()
+            val anioActual = calendario.get(Calendar.YEAR) % 100
+            val mesActual = calendario.get(Calendar.MONTH) + 1
+
+            if (anio < anioActual) return false
+
+            if (anio == anioActual && mes < mesActual) return false
+
+            if (anio > anioActual + 10) return false
+
+            true
+
+        } catch (e: Exception) {
+            false
+        }
     }
 }

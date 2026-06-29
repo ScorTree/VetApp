@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vetapp.data.HttpClientProvider
 import com.example.vetapp.data.SupabaseConfig
@@ -107,19 +108,70 @@ class EditarMascotaActivity : AppCompatActivity() {
 
     private fun guardarCambios() {
 
-        val nombre = etNombre.text.toString().trim()
-        val especie = etEspecie.text.toString().trim()
-        val raza = etRaza.text.toString().trim()
-        val edad = etEdad.text.toString().toIntOrNull()
+        val nombre = formatearTextoMascota(etNombre.text.toString())
+        val especie = formatearTextoMascota(etEspecie.text.toString())
+        val raza = formatearTextoMascota(etRaza.text.toString())
+        val edadStr = etEdad.text.toString().trim()
 
-        if (nombre.isEmpty() || especie.isEmpty()) {
+        etNombre.setText(nombre)
+        etNombre.setSelection(nombre.length)
+
+        etEspecie.setText(especie)
+        etEspecie.setSelection(especie.length)
+
+        etRaza.setText(raza)
+        etRaza.setSelection(raza.length)
+
+        if (!nombreMascotaValido(nombre)) {
             Toast.makeText(
                 this,
-                "Nombre y especie son obligatorios",
-                Toast.LENGTH_SHORT
+                "Ingresa un nombre de mascota válido",
+                Toast.LENGTH_LONG
             ).show()
             return
         }
+
+        if (!especieValida(especie)) {
+            Toast.makeText(
+                this,
+                "Ingresa una especie válida",
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
+
+        if (raza.isNotEmpty() && !razaValida(raza)) {
+            Toast.makeText(
+                this,
+                "Ingresa una raza válida o deja el campo vacío",
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
+
+        if (edadStr.isEmpty()) {
+            Toast.makeText(
+                this,
+                "Ingresa la edad de la mascota",
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
+
+        val edad = edadStr.toIntOrNull()
+
+        if (edad == null || edad !in 0..30) {
+            Toast.makeText(
+                this,
+                "La edad debe estar entre 0 y 30 años",
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
+
+        val btnGuardar = findViewById<MaterialButton>(R.id.btnGuardar)
+        btnGuardar.isEnabled = false
+        btnGuardar.text = "Guardando..."
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -135,13 +187,13 @@ class EditarMascotaActivity : AppCompatActivity() {
 
                     setBody(
                         """
-                        {
-                          "pac_nombre": "$nombre",
-                          "pac_especie": "$especie",
-                          "pac_raza": ${if (raza.isEmpty()) "null" else "\"$raza\""},
-                          "pac_edad": ${edad ?: "null"}
-                        }
-                        """.trimIndent()
+                    {
+                      "pac_nombre": "$nombre",
+                      "pac_especie": "$especie",
+                      "pac_raza": ${if (raza.isEmpty()) "null" else "\"$raza\""},
+                      "pac_edad": $edad
+                    }
+                    """.trimIndent()
                     )
                 }
 
@@ -151,18 +203,72 @@ class EditarMascotaActivity : AppCompatActivity() {
                         "Mascota actualizada 🐾",
                         Toast.LENGTH_SHORT
                     ).show()
-                    finish() // 🔙 vuelve a DetalleMascota
+                    finish()
                 }
 
             } catch (e: Exception) {
+
+                Log.e("EDITAR_MASCOTA", "Error al guardar cambios", e)
+
                 runOnUiThread {
+                    btnGuardar.isEnabled = true
+                    btnGuardar.text = "Guardar cambios"
+
                     Toast.makeText(
                         this@EditarMascotaActivity,
-                        "Error al guardar cambios",
+                        "Comprueba tu conexión a internet e inténtalo nuevamente.",
                         Toast.LENGTH_LONG
                     ).show()
                 }
             }
         }
+    }
+
+    private fun nombreMascotaValido(nombre: String): Boolean {
+        if (nombre.length !in 2..30) return false
+        if (!nombre.any { it.isLetter() }) return false
+        if (nombre.matches(Regex("^\\d+$"))) return false
+
+        return nombre.matches(
+            Regex("^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 '\\-]+$")
+        )
+    }
+
+    private fun especieValida(especie: String): Boolean {
+        if (especie.length !in 3..30) return false
+        if (!especie.any { it.isLetter() }) return false
+        if (especie.matches(Regex("^\\d+$"))) return false
+
+        return especie.matches(
+            Regex("^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$")
+        )
+    }
+
+    private fun razaValida(raza: String): Boolean {
+        if (raza.length !in 2..40) return false
+        if (!raza.any { it.isLetter() }) return false
+        if (raza.matches(Regex("^\\d+$"))) return false
+
+        return raza.matches(
+            Regex("^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 '\\-]+$")
+        )
+    }
+
+    private fun limpiarTexto(texto: String): String {
+        return texto
+            .trim()
+            .replace(Regex("\\s+"), " ")
+    }
+
+    private fun formatearTextoMascota(texto: String): String {
+        return limpiarTexto(texto)
+            .lowercase()
+            .split(" ")
+            .joinToString(" ") { palabra ->
+                palabra.replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase()
+                    else it.toString()
+                }
+            }
     }
 }
